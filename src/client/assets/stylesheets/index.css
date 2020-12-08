@@ -16,7 +16,7 @@
 body {
   display: flex;
   flex-direction: column;
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;
   min-height: 100vh;
 }
 
@@ -49,8 +49,6 @@ header {
   font-size: 70px;
   text-transform: uppercase;
   z-index: 11;
-  position: absolute;
-  top: 5rem;
 }
 
 .centerIntro {
@@ -58,8 +56,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 3rem;
+  gap: 3rem;
 }
 
 .center {
@@ -91,6 +88,7 @@ h3 {
   color: black;
   font-weight: normal;
   font-size: 25px;
+  font-weight: 300;
 }
 
 h4 {
@@ -113,7 +111,7 @@ p {
   border-radius: 4px;
   border-color: 1px solid green;
   color: white;
-  font-size: 20px;
+  font-size: 17px;
   text-transform: uppercase;
   margin: 20px 0;
   display: block;
@@ -123,6 +121,9 @@ p {
 
 main {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 section {
