@@ -1,5 +1,16 @@
 /* CREATE PAGE SPECIFIC STYLES */
 
+.trackCard {
+  width: 250px;
+  height: 250px;
+}
+
+.racerCard {
+    width: 300px;
+    height: 300px;
+}
+
+
 /* -------------------  MOBILE  --------------------- */
 
 header {

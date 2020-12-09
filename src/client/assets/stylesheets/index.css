@@ -114,9 +114,16 @@ p {
   font-size: 17px;
   text-transform: uppercase;
   margin: 20px 0;
-  display: block;
   text-align: center;
   text-decoration: none;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 main {
