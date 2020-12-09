@@ -124,7 +124,7 @@ async function runRace(raceID) {
 
 		renderAt('#leaderBoard', raceProgress(res.positions))
 	*/
-		
+
 
 	/* 
 		TODO - if the race info status property is "finished", run the following:
@@ -146,8 +146,9 @@ async function runCountdown() {
 		return new Promise(resolve => {
 			// TODO - use Javascript's built in setInterval method to count down once per second
 			 const interval = setInterval(() => {
-				 if (interval >= 0) {
+				 if (timer !== 0) {
 					// run this DOM manipulation to decrement the countdown for the user
+					console.log(timer);
 					document.getElementById('big-numbers').innerHTML = --timer
 				 } else {
 					// TODO - if the countdown is done, clear the interval, resolve the promise, and return
@@ -228,6 +229,7 @@ function renderRacerCard(racer) {
 			<p>${`Top Speed: ${top_speed}`}</p>
 			<p>${acceleration}</p> 
 			<p>${handling}</p>
+			<img class="racerCard" src="../img/Race_${id}.jpg" alt="${customRacerName[driver_name]}"/>
 		</li>
 	`
 }
