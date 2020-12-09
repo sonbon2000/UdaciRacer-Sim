@@ -94,6 +94,10 @@ async function handleCreateRace() {
 	// TODO - Get player_id and track_id from the store
 	const player_id = store.player_id;
 	const track_id = store.track_id;
+
+	// if (!player_id || !track_id) {
+	// 	return
+	// }
 	// const race = TODO - invoke the API call to create the race, then save the result
 	try {
 		const race = await createRace(player_id, track_id);
@@ -121,11 +125,20 @@ async function runRace(raceID) {
 	// TODO - use Javascript's built in setInterval method to get race info every 500ms
 	/* 
 		TODO - if the race info status property is "in-progress", update the leaderboard by calling:
-
 		renderAt('#leaderBoard', raceProgress(res.positions))
 	*/
-
-
+		setInterval(async ()=> {
+			const data = await getRace(raceID);
+			if(data.status == 'in-progress') {
+				renderAt('#leaderBoard', raceProgress(res.positions))
+			} else if (data.status == 'finished') {
+				clearInterval(raceInterval) // to stop the interval from repeating
+				renderAt('#race', resultsView(res.positions)) // to render the results view
+				reslove(res);
+			}
+		},500)
+		// remember to add error handling for the Promise
+	}).catch(error => console.log(error))
 	/* 
 		TODO - if the race info status property is "finished", run the following:
 
@@ -133,8 +146,6 @@ async function runRace(raceID) {
 		renderAt('#race', resultsView(res.positions)) // to render the results view
 		reslove(res) // resolve the promise
 	*/
-	})
-	// remember to add error handling for the Promise
 }
 
 async function runCountdown() {
@@ -180,7 +191,6 @@ function handleSelectPodRacer(target) {
 
 function handleSelectTrack(target) {
 	console.log("selected a track", target.id)
-
 	// remove class selected from all track options
 	const selected = document.querySelector('#tracks .selected')
 	if(selected) {
@@ -229,7 +239,7 @@ function renderRacerCard(racer) {
 			<p>${`Top Speed: ${top_speed}`}</p>
 			<p>${acceleration}</p> 
 			<p>${handling}</p>
-			<img class="racerCard" src="../img/Race_${id}.jpg" alt="${customRacerName[driver_name]}"/>
+			<img class="racerCard" src="/assets/img/Racer_${id}.png" alt="${customRacerName[driver_name]}"/>	
 		</li>
 	`
 }
@@ -256,7 +266,7 @@ function renderTrackCard(track) {
 	return `
 		<li id="${id}" class="card track">
 			<h3>${customTrackName[name]}</h3>
-			<img class="trackCard" src="../img/Track_${id}.jpg"/>
+			<img class="trackCard" src="/assets/img/Track_${id}.jpg"/>
 		</li>
 	`
 }
