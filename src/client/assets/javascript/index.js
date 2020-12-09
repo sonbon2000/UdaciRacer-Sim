@@ -420,7 +420,7 @@ async function getRace(id) {
 		});
 		return data.json();
 	} catch (error) {
-		console.log("Problem with getRace request::", err);
+		console.log("Problem with getRace request::", error);
 	}
 }
 
@@ -447,6 +447,6 @@ async function accelerate(id) {
 			...defaultFetchOpts(),
 		});
 	} catch (error) {
-		console.log("Problem with accelerate request::", err);
+		console.log("Problem with accelerate request::", error);
 	}
 }
