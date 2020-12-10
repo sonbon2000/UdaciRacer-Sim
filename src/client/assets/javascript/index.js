@@ -115,7 +115,7 @@ async function handleCreateRace() {
 		// render starting UI
 		renderAt('#race', renderRaceStartView(race.Track)); 
 		// TODO - update the store with the race id
-		store.race_id = race.ID;
+		store.race_id = race.ID-1;
 		// The race has been created, now start the countdown
 		// TODO - call the async function runCountdown
 		await runCountdown();
@@ -137,15 +137,15 @@ async function runRace(raceID) {
 		TODO - if the race info status property is "in-progress", update the leaderboard by calling:
 		renderAt('#leaderBoard', raceProgress(res.positions))
 	*/
-		setInterval(async ()=> {
+		const racerInterval = setInterval(async ()=> {
 			const data = await getRace(raceID);
 			console.log(data);
 			if(data.status == 'in-progress') {
-				renderAt('#leaderBoard', raceProgress(res.positions))
+				renderAt('#leaderBoard', raceProgress(data.positions))
 			} else if (data.status == 'finished') {
-				clearInterval(raceInterval) // to stop the interval from repeating
-				renderAt('#race', resultsView(res.positions)) // to render the results view
-				reslove(res);
+				clearInterval(racerInterval) // to stop the interval from repeating
+				renderAt('#race', resultsView(data.positions)) // to render the results view
+				reslove(data);
 			}
 		},500)
 		// remember to add error handling for the Promise
@@ -196,7 +196,8 @@ function handleSelectPodRacer(target) {
 	target.classList.add('selected')
 
 	// TODO - save the selected racer to the store
-	store.race_id = target;
+	store.player_id = target.id;
+
 }
 
 function handleSelectTrack(target) {
@@ -211,7 +212,7 @@ function handleSelectTrack(target) {
 	target.classList.add('selected')
 
 	// TODO - save the selected track id to the store
-	store.track_id = target;
+	store.track_id = target.id;
 }
 
 function handleAccelerate() {
@@ -422,21 +423,23 @@ function createRace(player_id, track_id) {
 
 async function getRace(id) {
 	// GET request to `${SERVER}/api/races/${id}`
+	const raceId = parseInt(id) - 1;
 	try {
-		const data = await fetch(`${SERVER}/api/races/${id}`, {
+		const data = await fetch(`${SERVER}/api/races/${raceId}`, {
 			method: "GET",
 			dataType: "jsonp",
 			...defaultFetchOpts(),
 		});
-		return data;
+		return data.json();
 	} catch (error) {
 		console.log("Problem with getRace request::", error);
 	}
 }
 
 async function startRace(id) {
+	const raceId = parseInt(id) - 1;
 	try {
-		const data = await fetch(`${SERVER}/api/races/${id}/start`, {
+		const data = await fetch(`${SERVER}/api/races/${raceId}/start`, {
 			method: `POST`,
 			dataType: 'jsonp',
 			...defaultFetchOpts(),
@@ -451,8 +454,9 @@ async function accelerate(id) {
 	// POST request to `${SERVER}/api/races/${id}/accelerate`
 	// options parameter provided as defaultFetchOpts
 	// no body or datatype needed for this request
+	const raceId = parseInt(id) - 1;
 	try {
-		await fetch (`${SERVER}/api/races/${id}/accelerate`, {
+		await fetch (`${SERVER}/api/races/${raceId}/accelerate`, {
 			method: 'POST',
 			...defaultFetchOpts(),
 		});

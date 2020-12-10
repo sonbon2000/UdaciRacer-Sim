@@ -42,7 +42,7 @@ Note that this process will use your terminal tab, so you will have to open a ne
 
 First, run your preference of `npm install && npm start` or `yarn && yarn start` at the root of this project. Then you should be able to access http://localhost:3000.
 
-### Result
+## Result
 
 
 
