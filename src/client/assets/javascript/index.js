@@ -53,6 +53,16 @@ function setupClickHandlers() {
 	document.addEventListener('click', function(event) {
 		const { target } = event
 
+		let parent = event.target.parentElement
+
+		if(parent.matches('.card.track')){
+			handleSelectTrack(parent);
+		}
+
+		if(parent.matches('.card.podracer')){
+			handleSelectPodRacer(parent);
+		}
+
 		// Race track form field
 		if (target.matches('.card.track')) {
 			handleSelectTrack(target)
@@ -129,6 +139,7 @@ async function runRace(raceID) {
 	*/
 		setInterval(async ()=> {
 			const data = await getRace(raceID);
+
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(res.positions))
 			} else if (data.status == 'finished') {
@@ -141,7 +152,6 @@ async function runRace(raceID) {
 	}).catch(error => console.log(error))
 	/* 
 		TODO - if the race info status property is "finished", run the following:
-
 		clearInterval(raceInterval) // to stop the interval from repeating
 		renderAt('#race', resultsView(res.positions)) // to render the results view
 		reslove(res) // resolve the promise
@@ -206,9 +216,9 @@ function handleSelectTrack(target) {
 
 function handleAccelerate() {
 	// TODO - Invoke the API call to accelerate
-	accelerate(sotre.race_id)
-		.then(()=> console.log("accelerate button clicked"))
-		.catch((error)=>console.log(error))
+	accelerate(store.race_id)
+		 .then(()=> console.log("accelerate button clicked"))
+		 .catch((error)=>console.log(error))
 }
 
 // HTML VIEWS ------------------------------------------------
