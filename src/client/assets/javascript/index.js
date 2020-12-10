@@ -115,7 +115,7 @@ async function handleCreateRace() {
 		// render starting UI
 		renderAt('#race', renderRaceStartView(race.Track)); 
 		// TODO - update the store with the race id
-		store.race_id = race.ID-1;
+		store.race_id = parseInt(race.ID) - 1;
 		// The race has been created, now start the countdown
 		// TODO - call the async function runCountdown
 		await runCountdown();
@@ -325,7 +325,12 @@ function resultsView(positions) {
 }
 
 function raceProgress(positions) {
-	let userPlayer = positions.find(e => e.id === store.player_id)
+	console.log(store.player_id);
+	let userPlayer = positions.find(e => {
+		console.log(e);
+		return e.id === store.player_id
+	})
+	
 	userPlayer.driver_name += " (you)"
 
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
