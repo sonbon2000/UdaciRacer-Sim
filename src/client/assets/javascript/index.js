@@ -139,7 +139,7 @@ async function runRace(raceID) {
 	*/
 		setInterval(async ()=> {
 			const data = await getRace(raceID);
-
+			console.log(data);
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(res.positions))
 			} else if (data.status == 'finished') {
@@ -428,7 +428,7 @@ async function getRace(id) {
 			dataType: "jsonp",
 			...defaultFetchOpts(),
 		});
-		return data.json();
+		return data;
 	} catch (error) {
 		console.log("Problem with getRace request::", error);
 	}
