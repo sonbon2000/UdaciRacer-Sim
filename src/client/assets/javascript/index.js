@@ -139,7 +139,6 @@ async function runRace(raceID) {
 	*/
 		const racerInterval = setInterval(async ()=> {
 			const data = await getRace(raceID);
-			console.log(data);
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(data.positions))
 			} else if (data.status == 'finished') {
@@ -325,31 +324,37 @@ function resultsView(positions) {
 }
 
 function raceProgress(positions) {
-	let userPlayer = positions.filter(e => {
-		console.log(e);
-		return e.id === store.player_id
-	})
-	
-	userPlayer.classList = "player";
 
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
 	let count = 1
 
 	const results = positions.map(p => {
-		return `
+
+		if(p.id == store.player_id) {
+			return `
 			<tr>
 				<td>
-					<h3>${count++} - ${customRacerName[p.driver_name]}</h3>
+					<h3 class="marginBottom">${count++} - <span class="player">${customRacerName[p.driver_name]}</span></h3>
 				</td>
 			</tr>
 		`
+		}
+		else {
+			return `
+				<tr>
+					<td>
+						<h3 class="marginBottom">${count++} - ${customRacerName[p.driver_name]}</h3>
+					</td>
+				</tr>
+			`
+		}
 	})
-
+	
 	return `
 		<main>
 			<h3>Leaderboard</h3>
 			<section id="leaderBoard" class="leaderBoard">
-				${results}
+				${results.join(' ')}
 			</section>
 		</main>
 	`
