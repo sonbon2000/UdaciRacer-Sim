@@ -115,7 +115,7 @@ async function handleCreateRace() {
 		// render starting UI
 		renderAt('#race', renderRaceStartView(race.Track)); 
 		// TODO - update the store with the race id
-		store.race_id = parseInt(race.ID) - 1;
+		store.race_id = parseInt(race.ID);
 		// The race has been created, now start the countdown
 		// TODO - call the async function runCountdown
 		await runCountdown();
@@ -139,7 +139,6 @@ async function runRace(raceID) {
 	*/
 		const racerInterval = setInterval(async ()=> {
 			const data = await getRace(raceID);
-			console.log(data);
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(data.positions))
 			} else if (data.status == 'finished') {
