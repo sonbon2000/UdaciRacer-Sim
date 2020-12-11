@@ -330,9 +330,8 @@ function raceProgress(positions) {
 		return e.id === store.player_id
 	})
 	
-	userPlayer.driver_name += "Main Character"
 	userPlayer.classList = "player";
-	
+
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
 	let count = 1
 
