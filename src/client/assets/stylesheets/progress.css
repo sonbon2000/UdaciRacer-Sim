@@ -1,5 +1,9 @@
 /* PROGRESS PAGE SPECIFIC STYLES */
 
+.player {
+    color: rgb(0, 255, 255);
+}
+
 .Accelerate {
     color: white;
     font-size: 24px;

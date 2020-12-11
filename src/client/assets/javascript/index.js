@@ -325,14 +325,14 @@ function resultsView(positions) {
 }
 
 function raceProgress(positions) {
-	console.log(store.player_id);
-	let userPlayer = positions.find(e => {
+	let userPlayer = positions.filter(e => {
 		console.log(e);
 		return e.id === store.player_id
 	})
 	
-	userPlayer.driver_name += " (you)"
-
+	userPlayer.driver_name += "Main Character"
+	userPlayer.classList = "player";
+	
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
 	let count = 1
 
@@ -340,7 +340,7 @@ function raceProgress(positions) {
 		return `
 			<tr>
 				<td>
-					<h3>${count++} - ${p.driver_name}</h3>
+					<h3>${count++} - ${customRacerName[p.driver_name]}</h3>
 				</td>
 			</tr>
 		`
@@ -349,7 +349,7 @@ function raceProgress(positions) {
 	return `
 		<main>
 			<h3>Leaderboard</h3>
-			<section id="leaderBoard">
+			<section id="leaderBoard" class="leaderBoard">
 				${results}
 			</section>
 		</main>

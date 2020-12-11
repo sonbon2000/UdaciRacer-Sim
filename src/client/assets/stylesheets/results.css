@@ -1,7 +1,9 @@
 /* RESULTS PAGE SPECIFIC STYLES */
 
 /* -------------------  MOBILE  --------------------- */
-
+#leaderBoard {
+    margin:0 5rem;
+}
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
