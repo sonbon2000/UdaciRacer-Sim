@@ -105,9 +105,11 @@ async function handleCreateRace() {
 	const player_id = store.player_id;
 	const track_id = store.track_id;
 
-	// if (!player_id || !track_id) {
-	// 	return
-	// }
+	if (!player_id || !track_id) {
+		alert("Please select track and racer to play a game!");
+	 	return
+	}
+
 	// const race = TODO - invoke the API call to create the race, then save the result
 	try {
 		const race = await createRace(player_id, track_id);
