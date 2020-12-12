@@ -140,7 +140,11 @@ async function runRace(raceID) {
 		renderAt('#leaderBoard', raceProgress(res.positions))
 	*/
 		const racerInterval = setInterval(async ()=> {
-			const data = await getRace(raceID);
+			const data = await getRace(raceID).catch((error) =>
+				console.log("getRace error ", error) 
+			);
+
+			console.log(data);
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(data.positions))
 			} else  {
