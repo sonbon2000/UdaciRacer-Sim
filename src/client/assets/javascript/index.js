@@ -143,11 +143,12 @@ async function runRace(raceID) {
 			const data = await getRace(raceID);
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(data.positions))
-			} else if (data.status == 'finished') {
+			} else  {
+				// if (data.status == 'finished')
 				clearInterval(racerInterval) // to stop the interval from repeating
-				renderAt('#race', resultsView(data.positions)) // to render the results view
 				reslove(data);
 			}
+			
 		},500)
 		// remember to add error handling for the Promise
 	}).catch(error => console.log(error))
