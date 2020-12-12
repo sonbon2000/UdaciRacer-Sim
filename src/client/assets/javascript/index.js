@@ -439,7 +439,7 @@ function createRace(player_id, track_id) {
 
 async function getRace(id) {
 	// GET request to `${SERVER}/api/races/${id}`
-	const raceId = parseInt(id) - 1;
+	const raceId = parseInt(id);
 	try {
 		const data = await fetch(`${SERVER}/api/races/${raceId}`, {
 			method: "GET",
@@ -453,7 +453,7 @@ async function getRace(id) {
 }
 
 async function startRace(id) {
-	const raceId = parseInt(id) - 1;
+	const raceId = parseInt(id);
 	try {
 		const data = await fetch(`${SERVER}/api/races/${raceId}/start`, {
 			method: `POST`,
@@ -470,7 +470,7 @@ async function accelerate(id) {
 	// POST request to `${SERVER}/api/races/${id}/accelerate`
 	// options parameter provided as defaultFetchOpts
 	// no body or datatype needed for this request
-	const raceId = parseInt(id) - 1;
+	const raceId = parseInt(id);
 	try {
 		await fetch (`${SERVER}/api/races/${raceId}/accelerate`, {
 			method: 'POST',
