@@ -44,7 +44,13 @@ First, run your preference of `npm install && npm start` or `yarn && yarn start`
 
 ## Result
 
+### UdaciRacer Information - Home
 
+### UdaciRacer Information - Choose your racer
+
+### UdaciRacer Information - Start racing
+
+### UdaciRacer Information - Result
 
 
 ## API Call
