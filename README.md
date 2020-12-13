@@ -47,11 +47,7 @@ First, run your preference of `npm install && npm start` or `yarn && yarn start`
 
 
 
-
-## License
-
-This project is authorized MIT License
-
+## API Call
 
 [GET] `api/tracks`
 List of all tracks
@@ -95,3 +91,7 @@ Accelerate a car
 - Returns nothing
 
 To complete the race logic, find all the TODO tags in index.js and read the instructions.
+
+## License
+
+This project is authorized MIT License

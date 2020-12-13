@@ -1,7 +1,7 @@
 // PROVIDED CODE BELOW (LINES 1 - 80) DO NOT REMOVE
 
 // The store will hold all information needed globally
-var store = {
+let store = {
 	track_id: undefined,
 	player_id: undefined,
 	race_id: undefined,
@@ -143,14 +143,12 @@ async function runRace(raceID) {
 			const data = await getRace(raceID).catch((error) =>
 				console.log("getRace error ", error) 
 			);
-
-			console.log(data);
 			if(data.status == 'in-progress') {
 				renderAt('#leaderBoard', raceProgress(data.positions))
-			} else  {
-				// if (data.status == 'finished')
+			} else if(data.status == 'finished') {
 				clearInterval(racerInterval) // to stop the interval from repeating
-				reslove(data);
+				renderAt('#race', resultsView(data.positions)) 
+				resolve(data);
 			}
 			
 		},500)
@@ -324,8 +322,10 @@ function resultsView(positions) {
 			<h1>Race Results</h1>
 		</header>
 		<main>
-			${raceProgress(positions)}
-			<a href="/race">Start a new race</a>
+			<div class="rowCenter">
+				${raceProgress(positions)}
+				<a class="button" href="/race">Start a new race</a>
+			</div>
 		</main>
 	`
 }
