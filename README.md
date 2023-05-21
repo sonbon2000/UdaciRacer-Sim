@@ -42,20 +42,6 @@ Note that this process will use your terminal tab, so you will have to open a ne
 
 First, run your preference of `npm install && npm start` or `yarn && yarn start` at the root of this project. Then you should be able to access http://localhost:3000.
 
-## Result
-
-### UdaciRacer Information - Home
-<img width="1769" alt="Home" src="https://user-images.githubusercontent.com/17351134/102006197-5619d900-3d73-11eb-8009-5071183efd6b.png">
-
-### UdaciRacer Information - Choose your racer
-<img width="1732" alt="ChooseRacer" src="https://user-images.githubusercontent.com/17351134/102006199-574b0600-3d73-11eb-8e71-fca0ab5fa8a1.png">
-
-### UdaciRacer Information - Start racing
-<img width="1729" alt="Racing" src="https://user-images.githubusercontent.com/17351134/102006200-57e39c80-3d73-11eb-91b3-bc490c6791df.png">
-
-### UdaciRacer Information - Result
-<img width="1738" alt="Result" src="https://user-images.githubusercontent.com/17351134/102006201-5914c980-3d73-11eb-9ec4-aa37fc2504fc.png">
-
 ## API Call
 
 [GET] `api/tracks`
